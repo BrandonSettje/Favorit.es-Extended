@@ -11,8 +11,11 @@ namespace Favorit.es.Controllers
 {
     public class HomeController : Controller
     {
+        //gets Database
         private FavoritesEntities db = new FavoritesEntities();
-
+        /// <summary>
+        /// gets id of currently logged in user
+        /// </summary>
         public string UserID
         {
             get { return User.Identity.GetUserId().ToString(); }
@@ -22,7 +25,7 @@ namespace Favorit.es.Controllers
         public List<Favorite> UserFavorites
         {
             get
-            {
+            {   //lazyload
                 if (_userFavorites == null)
                 {
                     if (User.Identity.IsAuthenticated)
